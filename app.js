@@ -1,11 +1,17 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var places = require('./routes/places');
 
 var app = express();
+
+
+// mongoose
+mongoose.connect('mongodb://localhost/test2', { useMongoClient: true, promiseLibrary: global.Promise });
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

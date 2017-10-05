@@ -25,5 +25,18 @@ router.get('/', function(req, res) {
   res.render('./places/index', {places: places});
 });
 
+router.get('/new', function (req, res) {
+   res.render('./places/new');
+});
+
+router.post('/', function (req, res) {
+   var newPlace = {
+       name: req.body.name,
+       photo: req.body.photo,
+       info: req.body.info
+   };
+   places.push(newPlace);
+   res.redirect('/places');
+});
 
 module.exports = router;
