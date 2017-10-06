@@ -13,7 +13,10 @@ var app = express();
 
 
 // mongoose
-mongoose.connect('mongodb://localhost/test2', { useMongoClient: true, promiseLibrary: global.Promise });
+mongoose.connect('mongodb://localhost/test2', {
+    useMongoClient: true,
+    promiseLibrary: global.Promise
+});
 
 
 // view engine setup
@@ -21,7 +24,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -29,25 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/places', places);
 app.use('/places', comments);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
