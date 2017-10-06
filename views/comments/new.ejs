@@ -1,0 +1,27 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Add a new comment to <%=place.name%></h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form method="post" action="/places/<%=place._id%>/comments">
+                <div class="form-group">
+                    <label for="commentAuthor">Username</label>
+                    <input type="text" class="form-control" id="commentAuthor" placeholder="Username" name="author">
+                </div>
+                <div class="form-group">
+                    <label for="commentText">Your comment</label>
+                    <input type="text" class="form-control" id="commentText" placeholder="Text" name="text">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    <p><a href="/places/<%=place._id%>">Go back</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<% include ../partials/footer.ejs %>

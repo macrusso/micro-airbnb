@@ -4,7 +4,13 @@ var mongoose = require('mongoose');
 var placeSchema = new mongoose.Schema({
     name: String,
     photo: String,
-    info: String
+    info: String,
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ]
 });
 
 module.exports = mongoose.model('Place', placeSchema);

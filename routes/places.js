@@ -7,7 +7,7 @@ var Place = require('../models/place');
 router.get('/', function(req, res) {
     Place.find({}, function (err, places) {
        if(err){
-           console.log('Something went wrong ' + err);
+           console.log(err);
        } else {
            res.render('./places/index', {places: places});
        }
@@ -28,7 +28,7 @@ router.post('/', function (req, res) {
     };
     Place.create(newPlace, function (err, place) {
         if(err){
-            console.log('Something went wrong ' + err);
+            console.log(err);
         } else {
             res.redirect('/places');
         }
@@ -37,8 +37,7 @@ router.post('/', function (req, res) {
 
 
 router.get('/:id', function (req, res) {
-    console.log(req.params.id);
-    Place.findById(req.params.id, function (err, foundPlace) {
+    Place.findById(req.params.id).populate('comments').exec( function (err, foundPlace) {
         res.render('./places/show', {place: foundPlace});
     });
 });
