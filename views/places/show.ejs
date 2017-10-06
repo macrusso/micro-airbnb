@@ -1,0 +1,24 @@
+<% include ../partials/header.ejs %>
+
+
+
+<div class="row">
+    <div class="col-sm-6 col-md-8 col-md-offset-2">
+        <div class="thumbnail">
+            <img class="img-responsive" src="<%= place.photo %>">
+            <div class="caption-full">
+                <h4 class="pull-right">£9.00/night</h4>
+                <h4><a><%=place.name%></a></h4>
+                <p><%= place.info %></p>
+                <p>
+                    <em>Submitted By USER</em>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<% include ../partials/footer.ejs %>
