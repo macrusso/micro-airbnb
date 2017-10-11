@@ -3,3 +3,22 @@
     margin-right: auto;
     width: 30%;
 }
+
+.thumbnail {
+    padding: 0;
+}
+.thumbnail img {
+    width: 100%;
+}
+
+.caption-full {
+    padding: 0 15px;
+}
+
+.caption-full p {
+    padding-top: 40px;
+}
+
+.caption p:first-of-type {
+    text-align: left;
+}

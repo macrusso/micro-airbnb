@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Place = require('../models/place');
 var Comment = require('../models/comment');
+var User = require('../models/user');
 
 
 router.get('/:id/comments/new', function (req, res) {
