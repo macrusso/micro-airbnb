@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var Place = require('../models/place');
-var Comment = require('../models/comment');
+var express = require('express'),
+    router = express.Router({mergeParams: true}),
+    Place = require('../models/place'),
+    Comment = require('../models/comment');
 
 
-router.get('/:id/comments/new', isLoggedIn, function (req, res) {
+router.get('/new', isLoggedIn, function (req, res) {
     Place.findById(req.params.id, function (err, foundPlace) {
         if(err){
             console.log(err);
@@ -14,7 +14,7 @@ router.get('/:id/comments/new', isLoggedIn, function (req, res) {
     });
 });
 
-router.post('/:id/comments', isLoggedIn, function (req, res){
+router.post('/', isLoggedIn, function (req, res){
     Place.findById(req.params.id, function (err, foundPlace) {
        if(err) {
            console.log(err);
@@ -28,6 +28,9 @@ router.post('/:id/comments', isLoggedIn, function (req, res){
               if(err){
                   console.log(err);
               } else {
+                  comment.author.id = req.user._id;
+                  comment.author.username = req.user.username;
+                  comment.save();
                   foundPlace.comments.push(comment);
                   foundPlace.save();
                   res.redirect('/places/' + foundPlace._id);

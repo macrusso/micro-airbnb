@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var Place = require('../models/place');
+var express = require('express'),
+    router = express.Router(),
+    Place = require('../models/place');
 
 
 router.get('/', function(req, res) {
@@ -18,12 +18,17 @@ router.get('/new', isLoggedIn, function (req, res) {
 });
 
 router.post('/', isLoggedIn, function (req, res) {
+    var author = {
+       id: req.user._id,
+       username: req.user.username
+    };
     var newPlace = {
         name: req.body.name,
         photo: req.body.photo,
-        info: req.body.info
+        info: req.body.info,
+        author: author
     };
-    Place.create(newPlace, function (err, place) {
+    Place.create(newPlace, function (err, newPlace) {
         if(err){
             console.log(err);
         } else {

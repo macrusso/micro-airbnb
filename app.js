@@ -15,7 +15,7 @@ var index = require('./routes/index'),
     places = require('./routes/places'),
     comments = require('./routes/comments');
 
-seed();  // seed the DB
+// seed();  // seed the DB
 
 // mongoose
 mongoose.connect('mongodb://localhost/test2', {
@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', index);
 app.use('/places', places);
-app.use('/places', comments);
+app.use('/places/:id/comments', comments);
 
 
 module.exports = app;

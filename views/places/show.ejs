@@ -18,6 +18,7 @@
                     <h4 class="pull-right">£9.00/night</h4>
                     <h4 class="pull-left"><a><%=place.name%></a></h4>
                     <p><%= place.info %></p>
+                    <p><em>Submited by <%=place.author.username%></em></p>
                 </div>
             </div>
             <div class="well">
@@ -26,7 +27,7 @@
                 <% place.comments.forEach(function(comment){ %>
                     <div class="row">
                         <div class="col-md-12">
-                            Posted by: <strong><%= comment.author %></strong>
+                            Posted by: <strong><%= comment.author.username %></strong>
                             <span class="pull-right">10 days ago</span>
                             <p><%= comment.text %></p>
                         </div>

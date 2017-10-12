@@ -15,7 +15,7 @@
     padding: 0 15px;
 }
 
-.caption-full p {
+.caption-full p:first-of-type {
     padding-top: 40px;
 }
 
