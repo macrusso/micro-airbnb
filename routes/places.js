@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Place = require('../models/place');
-var User = require('../models/user');
 
 
 router.get('/', function(req, res) {
@@ -14,13 +13,11 @@ router.get('/', function(req, res) {
     });
 });
 
-
-router.get('/new', function (req, res) {
+router.get('/new', isLoggedIn, function (req, res) {
    res.render('./places/new');
 });
 
-
-router.post('/', function (req, res) {
+router.post('/', isLoggedIn, function (req, res) {
     var newPlace = {
         name: req.body.name,
         photo: req.body.photo,
@@ -35,11 +32,17 @@ router.post('/', function (req, res) {
     });
 });
 
-
 router.get('/:id', function (req, res) {
     Place.findById(req.params.id).populate('comments').exec( function (err, foundPlace) {
         res.render('./places/show', {place: foundPlace});
     });
 });
+
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
 
 module.exports = router;

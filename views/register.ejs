@@ -1,0 +1,29 @@
+<% include ./partials/header.ejs %>
+
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Register</h1>
+        <div style="margin: 25px auto;">
+            <form method="post" action="/register">
+                <div class="form-group">
+                    <label for="newUserUsername">Your username</label>
+                    <input type="text" class="form-control" id="newUserUsername" placeholder="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="newUserPassword">Your password</label>
+                    <input type="password" class="form-control" id="newUserPassword" placeholder="password" name="password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    <p><a href="/places">Go back</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<% include ./partials/footer.ejs %>

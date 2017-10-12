@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Place = require('../models/place');
 var Comment = require('../models/comment');
-var User = require('../models/user');
 
 
-router.get('/:id/comments/new', function (req, res) {
+router.get('/:id/comments/new', isLoggedIn, function (req, res) {
     Place.findById(req.params.id, function (err, foundPlace) {
         if(err){
             console.log(err);
@@ -15,7 +14,7 @@ router.get('/:id/comments/new', function (req, res) {
     });
 });
 
-router.post('/:id/comments', function (req, res){
+router.post('/:id/comments', isLoggedIn, function (req, res){
     Place.findById(req.params.id, function (err, foundPlace) {
        if(err) {
            console.log(err);
@@ -37,5 +36,12 @@ router.post('/:id/comments', function (req, res){
        }
     });
 });
+
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
 
 module.exports = router;
