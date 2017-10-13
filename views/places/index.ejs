@@ -8,7 +8,7 @@
                     <img src="<%= place.photo %>">
                     <div class="caption">
                         <h3><%= place.name %></h3>
-                        <p><%= place.info %></p>
+                        <p><%= (place.info).substring(0, 100) + '...' %></p>
                         <p><a href="/places/<%= place._id %>" class="btn btn-primary" role="button">More</a></p>
                     </div>
                 </div>

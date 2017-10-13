@@ -1,19 +1,20 @@
-var express = require('express'),
-    app = express(),
-    path = require('path'),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
-    LocalStrategy = require('passport-local'),
-    Comment = require('./models/comment'),
-    Place = require('./models/place'),
-    User = require('./models/user');
-    seed = require('./seeds');
+const   express = require('express'),
+        app = express(),
+        path = require('path'),
+        bodyParser = require('body-parser'),
+        mongoose = require('mongoose'),
+        passport = require('passport'),
+        LocalStrategy = require('passport-local'),
+        Comment = require('./models/comment'),
+        Place = require('./models/place'),
+        User = require('./models/user'),
+        seed = require('./seeds'),
+        methodOverride = require('method-override');
 
 // import routes
-var index = require('./routes/index'),
-    places = require('./routes/places'),
-    comments = require('./routes/comments');
+const   index = require('./routes/index'),
+        places = require('./routes/places'),
+        comments = require('./routes/comments');
 
 // seed();  // seed the DB
 
@@ -50,6 +51,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 // routes
 app.use('/', index);

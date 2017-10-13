@@ -1,7 +1,7 @@
-var express = require('express'),
-    router = express.Router({mergeParams: true}),
-    Place = require('../models/place'),
-    Comment = require('../models/comment');
+const   express = require('express'),
+        router = express.Router({mergeParams: true}),
+        Place = require('../models/place'),
+        Comment = require('../models/comment');
 
 
 router.get('/new', isLoggedIn, function (req, res) {
@@ -20,7 +20,7 @@ router.post('/', isLoggedIn, function (req, res){
            console.log(err);
            res.redirect('/places');
        } else {
-           var newComment = {
+           const newComment = {
                text: req.body.text,
                author: req.body.author
            };

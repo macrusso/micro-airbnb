@@ -12,7 +12,7 @@
 }
 
 .caption-full {
-    padding: 0 15px;
+    padding: 10px 15px;
 }
 
 .caption-full p:first-of-type {
@@ -21,4 +21,8 @@
 
 .caption p:first-of-type {
     text-align: left;
+}
+
+#methodOverrideForm {
+    display: inline;
 }
