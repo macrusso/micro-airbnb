@@ -1,6 +1,7 @@
 const   express = require('express'),
         router = express.Router(),
-        Place = require('../models/place');
+        Place = require('../models/place'),
+        middleware = require('../middleware');
 
 
 router.get('/', function(req, res) {
@@ -13,11 +14,11 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/new', isLoggedIn, function (req, res) {
+router.get('/new', middleware.isLoggedIn, function (req, res) {
    res.render('./places/new');
 });
 
-router.post('/', isLoggedIn, function (req, res) {
+router.post('/', middleware.isLoggedIn, function (req, res) {
     const author = {
        id: req.user._id,
        username: req.user.username
@@ -43,13 +44,13 @@ router.get('/:id', function (req, res) {
     });
 });
 
-router.get('/:id/edit', checkPlaceOwnership, function (req, res) {
+router.get('/:id/edit', middleware.checkPlaceOwnership, function (req, res) {
     Place.findById(req.params.id, function (err, foundPlace) {
         res.render('./places/edit', {place: foundPlace});
     });
 });
 
-router.put('/:id', checkPlaceOwnership, function (req, res) {
+router.put('/:id', middleware.checkPlaceOwnership, function (req, res) {
     const updatedPlace = {
         name: req.body.name,
         photo: req.body.photo,
@@ -64,7 +65,7 @@ router.put('/:id', checkPlaceOwnership, function (req, res) {
     });
 });
 
-router.delete('/:id', checkPlaceOwnership, function (req, res) {
+router.delete('/:id', middleware.checkPlaceOwnership, function (req, res) {
     Place.findByIdAndRemove(req.params.id, function (err, foundPlace) {
         if(err){
             console.log(err);
@@ -73,31 +74,6 @@ router.delete('/:id', checkPlaceOwnership, function (req, res) {
         }
     });
 });
-
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/login');
-}
-
-function checkPlaceOwnership(req, res, next) {
-    if(req.isAuthenticated()){
-        Place.findById(req.params.id, function (err, foundPlace) {
-            if(err){
-                res.redirect('back');
-            } else {
-                if(foundPlace.author.id.equals(req.user._id)){
-                    return next();
-                } else {
-                    res.redirect('back');
-                }
-            }
-        });
-    } else {
-        res.redirect('back');
-    }
-}
 
 
 module.exports = router;
