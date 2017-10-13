@@ -7,7 +7,7 @@ const   express = require('express'),
 router.get('/', function(req, res) {
     Place.find({}, function (err, places) {
        if(err){
-           console.log(err);
+           res.redirect('back');
        } else {
            res.render('./places/index', {places: places});
        }
@@ -31,8 +31,9 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
     };
     Place.create(newPlace, function (err, newPlace) {
         if(err){
-            console.log(err);
+            res.redirect('back');
         } else {
+            req.flash('success', 'Location created!');
             res.redirect('/places');
         }
     });
@@ -58,8 +59,9 @@ router.put('/:id', middleware.checkPlaceOwnership, function (req, res) {
     };
     Place.findByIdAndUpdate(req.params.id, updatedPlace, function (err, foundPlace) {
         if(err){
-            console.log(err);
+            res.redirect('back');
         } else {
+            req.flash('success', 'Location edited!');
             res.redirect('/places/' + req.params.id);
         }
     });
@@ -68,8 +70,9 @@ router.put('/:id', middleware.checkPlaceOwnership, function (req, res) {
 router.delete('/:id', middleware.checkPlaceOwnership, function (req, res) {
     Place.findByIdAndRemove(req.params.id, function (err, foundPlace) {
         if(err){
-            console.log(err);
+            res.redirect('back');
         } else {
+            req.flash('success', 'Location deleted!');
             res.redirect('/places');
         }
     });

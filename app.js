@@ -9,7 +9,8 @@ const   express = require('express'),
         Place = require('./models/place'),
         User = require('./models/user'),
         seed = require('./seeds'),
-        methodOverride = require('method-override');
+        methodOverride = require('method-override'),
+        flash = require('connect-flash');
 
 // import routes
 const   index = require('./routes/index'),
@@ -17,6 +18,7 @@ const   index = require('./routes/index'),
         comments = require('./routes/comments');
 
 // seed();  // seed the DB
+
 
 // mongoose
 mongoose.connect('mongodb://localhost/test2', {
@@ -30,6 +32,7 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: true
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -39,17 +42,16 @@ passport.deserializeUser(User.deserializeUser());
 // locals
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 
-// view engine setup
+// general config
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
@@ -59,4 +61,6 @@ app.use('/places', places);
 app.use('/places/:id/comments', comments);
 
 
-module.exports = app;
+// module.exports = app;
+
+app.listen(3000);
