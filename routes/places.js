@@ -27,6 +27,7 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
         name: req.body.name,
         photo: req.body.photo,
         info: req.body.info,
+        price: req.body.price,
         author: author
     };
     Place.create(newPlace, function (err, newPlace) {
@@ -55,7 +56,8 @@ router.put('/:id', middleware.checkPlaceOwnership, function (req, res) {
     const updatedPlace = {
         name: req.body.name,
         photo: req.body.photo,
-        info: req.body.info
+        info: req.body.info,
+        price: req.body.price
     };
     Place.findByIdAndUpdate(req.params.id, updatedPlace, function (err, foundPlace) {
         if(err){

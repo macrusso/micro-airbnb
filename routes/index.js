@@ -5,7 +5,7 @@ const   express = require('express'),
 
 
 router.get('/', function (req, res) {
-    res.render('index');
+    res.render('landing');
 });
 
 router.get('/register', function (req, res) {

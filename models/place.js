@@ -5,6 +5,7 @@ const placeSchema = new mongoose.Schema({
     name: String,
     photo: String,
     info: String,
+    price: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
