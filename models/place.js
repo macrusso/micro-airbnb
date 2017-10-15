@@ -6,6 +6,9 @@ const placeSchema = new mongoose.Schema({
     photo: String,
     info: String,
     price: String,
+    location: String,
+    lat: Number,
+    lng: Number,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

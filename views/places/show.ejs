@@ -6,10 +6,11 @@
         <div class="col-md-3">
             <p class="lead">uAirbnb</p>
             <div class="list-group">
-                <li class="list-group-item"><a href="/places/">See other places</a></li>
+                <li class="list-group-item active">Info 1</li>
                 <li class="list-group-item">Info 2</li>
                 <li class="list-group-item">Info 3</li>
             </div>
+            <div id="map"></div>
         </div>
         <div class="col-md-9">
             <div class="thumbnail">
@@ -54,6 +55,34 @@
     </div>
 </div>
 
+
+<script>
+  function initMap() {
+    var lat = <%= place.lat %>;
+    var lng = <%= place.lng %>;
+    var center = {lat: lat, lng: lng };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= place.name %><br /></strong>
+      <%= place.location %>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9-QNI3PZsyKEkAD0iOZtVNyP18OgO3w&callback=initMap" async defer></script>
 
 
 <% include ../partials/footer.ejs %>

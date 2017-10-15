@@ -1,15 +1,16 @@
 const   express = require('express'),
         router = express.Router(),
         Place = require('../models/place'),
-        middleware = require('../middleware');
+        middleware = require('../middleware'),
+        geocoder = require('geocoder');
 
 
 router.get('/', function(req, res) {
-    Place.find({}, function (err, places) {
+    Place.find({}, function (err, allPlaces) {
        if(err){
            res.redirect('back');
        } else {
-           res.render('./places/index', {places: places});
+           res.render('./places/index', {places: allPlaces});
        }
     });
 });
@@ -23,20 +24,25 @@ router.post('/', middleware.isLoggedIn, function (req, res) {
        id: req.user._id,
        username: req.user.username
     };
-    const newPlace = {
-        name: req.body.name,
-        photo: req.body.photo,
-        info: req.body.info,
-        price: req.body.price,
-        author: author
-    };
-    Place.create(newPlace, function (err, newPlace) {
-        if(err){
-            res.redirect('back');
-        } else {
-            req.flash('success', 'Location created!');
-            res.redirect('/places');
-        }
+    geocoder.geocode(req.body.location, function (err, data) {
+        const newPlace = {
+            name: req.body.name,
+            photo: req.body.photo,
+            info: req.body.info,
+            price: req.body.price,
+            location: data.results[0].formatted_address,
+            lat: data.results[0].geometry.location.lat,
+            lng: data.results[0].geometry.location.lng,
+            author: author
+        };
+        Place.create(newPlace, function (err, newPlace) {
+            if(err){
+                res.redirect('back');
+            } else {
+                req.flash('success', 'Location created!');
+                res.redirect('/places');
+            }
+        });
     });
 });
 
@@ -53,19 +59,25 @@ router.get('/:id/edit', middleware.checkPlaceOwnership, function (req, res) {
 });
 
 router.put('/:id', middleware.checkPlaceOwnership, function (req, res) {
-    const updatedPlace = {
-        name: req.body.name,
-        photo: req.body.photo,
-        info: req.body.info,
-        price: req.body.price
-    };
-    Place.findByIdAndUpdate(req.params.id, updatedPlace, function (err, foundPlace) {
-        if(err){
-            res.redirect('back');
-        } else {
-            req.flash('success', 'Location edited!');
-            res.redirect('/places/' + req.params.id);
-        }
+    geocoder.geocode(req.body.location, function (err, data) {
+        const updatedPlace = {
+            name: req.body.name,
+            photo: req.body.photo,
+            info: req.body.info,
+            price: req.body.price,
+            location: data.results[0].formatted_address,
+            lat: data.results[0].geometry.location.lat,
+            lng: data.results[0].geometry.location.lng,
+        };
+        Place.findByIdAndUpdate(req.params.id, updatedPlace, function (err, foundPlace) {
+            if(err){
+                req.flash("error", err.message);
+                res.redirect('back');
+            } else {
+                req.flash('success', 'Location updated!');
+                res.redirect('/places/' + req.params.id);
+            }
+        });
     });
 });
 
