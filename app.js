@@ -18,6 +18,7 @@ const index      = require('./routes/index'),
         comments = require('./routes/comments');
 
 // seed();  // seed the DB
+app.locals.moment = require('moment');
 
 // mongoose
 mongoose.connect('mongodb://localhost/test2', {

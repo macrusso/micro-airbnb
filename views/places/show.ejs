@@ -19,7 +19,7 @@
                     <h4 class="pull-right">£<%= place.price %>/night</h4>
                     <h4 class="pull-left"><a><%=place.name%></a></h4>
                     <p><%= place.info %></p>
-                    <p><em>Submited by <%=place.author.username%></em></p>
+                    <p><em>Submited by <%=place.author.username%>, <%= moment(place.createdAt).fromNow() %></em></p>
                     <% if(currentUser && place.author.id.equals(currentUser._id)){ %>
                         <a href="/places/<%=place._id%>/edit" class="btn btn-warning" role="button">Edit</a>
                         <form method="post" action="/places/<%=place._id%>?_method=DELETE" id="methodOverrideForm">
@@ -45,7 +45,7 @@
                                     </button>
                                 </form>
                             <% } %>
-                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
                             <p><%= comment.text %></p>
                         </div>
                     </div>
