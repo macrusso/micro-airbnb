@@ -1,8 +1,13 @@
 <% include ../partials/header.ejs %>
 
 <div class="container">
+    <% if(noMatch.length > 1){ %>
+        <div class='searchResult'>
+            <h3><%= noMatch %></h3>
+            <h4>Please try again</h2>
+        </div>
+    <% } %>
     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-
         <% places.forEach(function (place) { %>
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">

@@ -35,3 +35,7 @@
 #searchBox {
     width: auto;
 }
+
+.searchResult {
+    text-align: center;
+}

@@ -6,13 +6,17 @@ const   express = require('express'),
 
 
 router.get('/', function(req, res) {
+    let noMatch = '';
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         Place.find({name: regex}, function (err, foundPlace) {
             if(err){
                 res.redirect('back');
             } else {
-                res.render('./places/index', {places: foundPlace});
+                if (foundPlace.length < 1) {
+                    noMatch = 'No place like: ' + req.query.search;
+                }
+                res.render('./places/index', {places: foundPlace, noMatch: noMatch});
             }
          });
     } else {
@@ -20,7 +24,7 @@ router.get('/', function(req, res) {
             if(err){
                 res.redirect('back');
             } else {
-                res.render('./places/index', {places: allPlaces});
+                res.render('./places/index', {places: allPlaces, noMatch: noMatch});
             }
          });
     }
@@ -105,6 +109,6 @@ router.delete('/:id', middleware.checkPlaceOwnership, function (req, res) {
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+}
 
 module.exports = router;
