@@ -6,13 +6,24 @@ const   express = require('express'),
 
 
 router.get('/', function(req, res) {
-    Place.find({}, function (err, allPlaces) {
-       if(err){
-           res.redirect('back');
-       } else {
-           res.render('./places/index', {places: allPlaces});
-       }
-    });
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Place.find({name: regex}, function (err, foundPlace) {
+            if(err){
+                res.redirect('back');
+            } else {
+                res.render('./places/index', {places: foundPlace});
+            }
+         });
+    } else {
+        Place.find({}, function (err, allPlaces) {
+            if(err){
+                res.redirect('back');
+            } else {
+                res.render('./places/index', {places: allPlaces});
+            }
+         });
+    }
 });
 
 router.get('/new', middleware.isLoggedIn, function (req, res) {
@@ -92,5 +103,8 @@ router.delete('/:id', middleware.checkPlaceOwnership, function (req, res) {
     });
 });
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = router;

@@ -1,24 +1,23 @@
-const   express = require('express'),
-        app = express(),
-        path = require('path'),
-        bodyParser = require('body-parser'),
-        mongoose = require('mongoose'),
-        passport = require('passport'),
-        LocalStrategy = require('passport-local'),
-        Comment = require('./models/comment'),
-        Place = require('./models/place'),
-        User = require('./models/user'),
-        seed = require('./seeds'),
+const express          = require('express'),
+        app            = express(),
+        path           = require('path'),
+        bodyParser     = require('body-parser'),
+        mongoose       = require('mongoose'),
+        passport       = require('passport'),
+        LocalStrategy  = require('passport-local'),
+        Comment        = require('./models/comment'),
+        Place          = require('./models/place'),
+        User           = require('./models/user'),
+        seed           = require('./seeds'),
         methodOverride = require('method-override'),
-        flash = require('connect-flash');
+        flash          = require('connect-flash');
 
 // import routes
-const   index = require('./routes/index'),
-        places = require('./routes/places'),
+const index      = require('./routes/index'),
+        places   = require('./routes/places'),
         comments = require('./routes/comments');
 
 // seed();  // seed the DB
-
 
 // mongoose
 mongoose.connect('mongodb://localhost/test2', {
@@ -59,7 +58,6 @@ app.use(methodOverride('_method'));
 app.use('/', index);
 app.use('/places', places);
 app.use('/places/:id/comments', comments);
-
 
 // module.exports = app;
 
