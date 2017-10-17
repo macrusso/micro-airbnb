@@ -21,7 +21,8 @@ const index      = require('./routes/index'),
 app.locals.moment = require('moment');
 
 // mongoose
-mongoose.connect('mongodb://localhost/test2', {
+// mongodb://localhost/test2
+mongoose.connect('mongodb://russo:faficzek13@ds123695.mlab.com:23695/uairbnb', {
     useMongoClient: true,
     promiseLibrary: global.Promise
 });
