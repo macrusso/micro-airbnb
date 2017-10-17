@@ -60,6 +60,4 @@ app.use('/', index);
 app.use('/places', places);
 app.use('/places/:id/comments', comments);
 
-// module.exports = app;
-
-app.listen(3000);
+module.exports = app;
