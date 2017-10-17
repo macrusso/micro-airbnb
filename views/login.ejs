@@ -2,28 +2,22 @@
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Login</h1>
-        <div style="margin: 25px auto;">
+        <h1 class="form-header">Login</h1>
             <form method="post" action="/login">
-                <div class="form-group">
-                    <label for="existingUserUsername">Your username</label>
-                    <input type="text" class="form-control" id="existingUserUsername" placeholder="username" name="username">
+                <div class="input-field col s6 offset-s3">
+                    <label for="existingUserUsername">Username</label>
+                    <input type="text" class="validate" id="existingUserUsername" name="username">
                 </div>
-                <div class="form-group">
-                    <label for="existingUserPassword">Your password</label>
-                    <input type="password" class="form-control" id="existingUserPassword" placeholder="password" name="password">
+                <div class="input-field col s6 offset-s3">
+                    <label for="existingUserPassword">Password</label>
+                    <input type="password" class="validate" id="existingUserPassword" name="password">
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    <p><a href="/places">Go back</a></p>
+                 <div class="input-field col s6 offset-s3">
+                    <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                    <p><a href="/places" class="form-link">Go back</a></p>
                 </div>
             </form>
-        </div>
     </div>
 </div>
-
-
-
-
 
 <% include ./partials/footer.ejs %>

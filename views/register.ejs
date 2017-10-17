@@ -2,28 +2,22 @@
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Register</h1>
-        <div style="margin: 25px auto;">
+        <h1 class="form-header">Register</h1>
             <form method="post" action="/register">
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="newUserUsername">Your username</label>
-                    <input type="text" class="form-control" id="newUserUsername" placeholder="username" name="username">
+                    <input type="text" class="validate" id="newUserUsername" name="username">
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="newUserPassword">Your password</label>
-                    <input type="password" class="form-control" id="newUserPassword" placeholder="password" name="password">
+                    <input type="password" class="validate" id="newUserPassword" name="password">
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    <p><a href="/places">Go back</a></p>
+                <div class="input-field col s6 offset-s3p">
+                    <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                    <p><a href="/places" class="form-link">Go back</a></p>
                 </div>
             </form>
-        </div>
     </div>
 </div>
-
-
-
-
 
 <% include ./partials/footer.ejs %>

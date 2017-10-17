@@ -1,27 +1,3 @@
-.form-group {
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-}
-
-.thumbnail {
-    padding: 0;
-}
-.thumbnail img {
-    width: 100%;
-}
-
-.caption-full {
-    padding: 10px 15px;
-}
-
-.caption-full p:first-of-type {
-    padding-top: 40px;
-}
-
-.caption p:first-of-type {
-    text-align: left;
-}
 
 #methodOverrideForm {
     display: inline;
@@ -38,4 +14,27 @@
 
 .searchResult {
     text-align: center;
+}
+
+[role=alert] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.form-header {
+    text-align: center;
+}
+
+.form-link {
+    color: #009688;
 }

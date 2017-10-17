@@ -2,40 +2,34 @@
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Add a new place</h1>
-        <div style="margin: 25px auto;">
+        <h1 class="form-header">Add a new place</h1>
             <form method="post" action="/places/">
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placeName">Name</label>
-                    <input type="text" class="form-control" id="placeName" placeholder="name" name="name">
+                    <input type="text" class="validate" id="placeName" name="name">
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placeLocation">Location</label>
-                    <input class="form-control" type="text" id="placeLocation" placeholder="Piccadilly Circus, London" name="location">
+                    <input class="validate" type="text" id="placeLocation" name="location">
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placePrice">Price per night</label>
-                    <input type="number" class="form-control" id="placePrice" placeholder="£00.00" name="price" min='0.0' step='0.1'>
+                    <input type="number" class="validate" id="placePrice" name="price" min='0.0' step='0.1'>
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placePhoto">Link to photo</label>
-                    <input type="text" class="form-control" id="placePhoto" placeholder="photo" name="photo">
+                    <input type="text" class="validate" id="placePhoto" name="photo">
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placeInfo">Description</label>
-                    <input type="text" class="form-control" id="placeInfo" placeholder="more info" name="info">
+                    <textarea id="placeInfo" class="materialize-textarea" name="info"></textarea>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    <p><a href="/places">Go back</a></p>
+                <div class="input-field col s6 offset-s3">
+                    <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                    <p><a href="/places" class="form-link">Go back</a></p>
                 </div>
             </form>
-        </div>
     </div>
 </div>
-
-
-
-
 
 <% include ../partials/footer.ejs %>

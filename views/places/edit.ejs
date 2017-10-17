@@ -2,40 +2,41 @@
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">You are editing the <%=place.name%></h1>
-        <div style="margin: 25px auto;">
+        <h1 class="form-header">You are editing the <%=place.name%></h1>
             <form method="post" action="/places/<%=place._id%>?_method=PUT">
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placeName">Name</label>
-                    <input type="text" class="form-control" id="placeName" name="name" value="<%=place.name%>">
+                    <input type="text" class="validate" id="placeName" name="name" value="<%=place.name%>">
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placeLocation">Location</label>
-                    <input class="form-control" type="text" id="placeLocation" name="location" value="<%=place.location%>">
+                    <input class="validate" type="text" id="placeLocation" name="location" value="<%=place.location%>">
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placePrice">Price per night</label>
-                    <input type="number" class="form-control" id="placePrice" placeholder="£00.00" name="price" min='0.0' step='0.1'>
+                    <input type="number" class="validate" id="placePrice" value="<%=place.price%>" name="price" min='0.0' step='0.1'>
                 </div>
-                <div class="form-group">
+                <div class="input-field col s6 offset-s3">
                     <label for="placePhoto">Link to photo</label>
-                    <input type="text" class="form-control" id="placePhoto" name="photo" value="<%=place.photo%>">
+                    <input type="text" class="validate" id="placePhoto" name="photo" value="<%=place.photo%>">
                 </div>
-                <div class="form-group">
-                    <label for="placeInfo">Description</label>
-                    <input type="text" class="form-control" id="placeInfo" name="info" value="<%=place.info%>">
+                <div class="input-field col s6 offset-s3">
+                    <label for="placeInfoTextarea">Description</label>
+                    <textarea id="placeInfoTextarea" class="materialize-textarea" name="info"></textarea>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    <p><a href="/places">Go back</a></p>
+                <div class="input-field col s6 offset-s3">
+                    <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                    <p><a href="/places" class="form-link">Go back</a></p>
                 </div>
             </form>
-        </div>
     </div>
 </div>
 
-
-
-
+<script>
+$(document).ready(function(e){
+    $('#placeInfoTextarea').val('<%=place.info%>');
+    $('#placeInfoTextarea').trigger('autoresize');
+});
+</script>
 
 <% include ../partials/footer.ejs %>
