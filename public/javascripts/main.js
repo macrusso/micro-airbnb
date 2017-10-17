@@ -13,4 +13,9 @@ $(document).ready(function(e){
         $('#search-icon').fadeIn();
     });
 
+    $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+        
+
 });

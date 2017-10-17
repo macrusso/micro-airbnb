@@ -7,21 +7,32 @@
             <h4>Please try again</h2>
         </div>
     <% } %>
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% places.forEach(function (place) { %>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="<%= place.photo %>">
-                    <div class="caption">
-                        <h3><%= place.name %></h3>
-                        <p><%= (place.info).substring(0, 100) + '...' %></p>
-                        <p><a href="/places/<%= place._id %>" class="btn btn-primary" role="button">More</a></p>
-                    </div>
-                </div>
-            </div>
-        <% })%>
+    <div class="row" style="display:flex; flex-wrap: wrap;">
+    <% places.forEach(function (place) { %>
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="<%= place.photo %>">
+            <span class="card-title"><%= place.name %></span>
+          </div>
+          <div class="card-content">
+            <p><%= (place.info).substring(0, 100) + '...' %></p>
+          </div>
+          <div class="card-action">
+            <a href="/places/<%= place._id %>" class="waves-effect waves-light btn">
+                <i class="material-icons right">send</i>More
+            </a>
+          </div>
+        </div>
+      </div>
+    <% })%>
     </div>
-</div>
 
+
+    <div class="fixed-action-btn" style="bottom: 250px">
+        <a href="/places/new" class="btn btn-floating btn-large pulse"><i class="material-icons">add</i></a>
+    </div>
+
+</div>
 
 <% include ../partials/footer.ejs %>

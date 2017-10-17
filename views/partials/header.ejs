@@ -11,48 +11,51 @@
 </head>
 <body>
 
-<nav>
-    <div class="nav-wrapper">
-        <a href="/places" class="brand-logo">uAirbnb</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <% if(!currentUser){ %>
-                <li><a href="/register">Sign up</a></li>
-                <li><a href="/login">Login</a></li>
-            <% } else { %>
-                <li><a>Hi <%= currentUser.username %>!</a></li>
-                <li><a href="/logout">Log out!</a></li>
-            <% } %>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <% if(!currentUser){ %>
-                <li><a href="/register">Sign up</a></li>
-                <li><a href="/login">Login</a></li>
-            <% } else { %>
-                <li><a>Hi <%= currentUser.username %>!</a></li>
-                <li><a href="/logout">Log out!</a></li>
-            <% } %>
-        </ul>
-        <ul class="right">
-            <li><a href="#" id="search-icon"><i class="material-icons">search</i></a></li>
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
-    <form role="search" action="/places"  method="get">
-        <div class="input-field" style="display:none" id="search-div">
-            <input type="text" id="search-txt" name="search">
-            <label for="search-txt">Search</label>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/places" class="brand-logo">uAirbnb</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <% if(!currentUser){ %>
+                    <li><a href="/register">Sign up</a></li>
+                    <li><a href="/login">Login</a></li>
+                <% } else { %>
+                    <li><a>Hi <%= currentUser.username %>!</a></li>
+                    <li><a href="/logout">Log out!</a></li>
+                <% } %>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <% if(!currentUser){ %>
+                    <li><a href="/register">Sign up</a></li>
+                    <li><a href="/login">Login</a></li>
+                <% } else { %>
+                    <li><a>Hi <%= currentUser.username %>!</a></li>
+                    <li><a href="/logout">Log out!</a></li>
+                <% } %>
+            </ul>
+            <ul class="right">
+                <li><a href="#" id="search-icon"><i class="material-icons">search</i></a></li>
+            </ul>
         </div>
-    </form>
-</div>
+    </nav>
+</header>
 
-<div class='container'>
-    <% if(error && error.length > 0) { %>
-        <div class="btn red lighten-3" role="alert"><%= error %></div>
-    <% } %>
-    <% if(success && success.length > 0) { %>
-        <div class="btn green lighten-3" role="alert"><%= success %></div>
-    <% } %>
-</div>
+<main>
+    <div class="container">
+        <form role="search" action="/places"  method="get">
+            <div class="input-field" style="display:none" id="search-div">
+                <input type="text" id="search-txt" name="search">
+                <label for="search-txt">Search</label>
+            </div>
+        </form>
+    </div>
+
+    <div class='container'>
+        <% if(error && error.length > 0) { %>
+            <div class="btn red lighten-3" role="alert"><%= error %></div>
+        <% } %>
+        <% if(success && success.length > 0) { %>
+            <div class="btn green lighten-3" role="alert"><%= success %></div>
+        <% } %>
+    </div>

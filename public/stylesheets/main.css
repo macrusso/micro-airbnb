@@ -38,3 +38,12 @@ main {
 .form-link {
     color: #009688;
 }
+
+.place-show{
+    padding-top: 30px;
+}
+
+.card .card-content p {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}

@@ -6,19 +6,19 @@
             <form method="post" action="/places/">
                 <div class="input-field col s6 offset-s3">
                     <label for="placeName">Name</label>
-                    <input type="text" class="validate" id="placeName" name="name">
+                    <input type="text" class="validate" id="placeName" name="name" required>
                 </div>
                 <div class="input-field col s6 offset-s3">
                     <label for="placeLocation">Location</label>
-                    <input class="validate" type="text" id="placeLocation" name="location">
+                    <input class="validate" type="text" id="placeLocation" name="location" required>
                 </div>
                 <div class="input-field col s6 offset-s3">
                     <label for="placePrice">Price per night</label>
-                    <input type="number" class="validate" id="placePrice" name="price" min='0.0' step='0.1'>
+                    <input type="number" class="validate" id="placePrice" name="price" min='0.0' step='0.1' required>
                 </div>
                 <div class="input-field col s6 offset-s3">
                     <label for="placePhoto">Link to photo</label>
-                    <input type="text" class="validate" id="placePhoto" name="photo">
+                    <input type="text" class="validate" id="placePhoto" name="photo" required>
                 </div>
                 <div class="input-field col s6 offset-s3">
                     <label for="placeInfo">Description</label>
