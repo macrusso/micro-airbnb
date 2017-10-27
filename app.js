@@ -29,7 +29,7 @@ mongoose.connect('mongodb://russo:faficzek13@ds123695.mlab.com:23695/uairbnb', {
 
 // passport config
 app.use(require('express-session')({
-    secret: 'Faficzki robia robote',
+    secret: 'Faficzki robia robote, to prawda',
     resave: false,
     saveUninitialized: true
 }));
